@@ -1,0 +1,8 @@
+const Actions = {
+  SET_LIMITS: 'SET_LIMITS',
+  SET_CURRENT_AMOUNT: 'SET_CURRENT_AMOUNT',
+  SET_CURRENT_TERM: 'SET_CURRENT_TERM',
+  SET_RESULTS: 'SET_RESULTS',
+};
+
+export default Actions;

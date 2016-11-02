@@ -103,7 +103,7 @@ gulp.task('create-js', ['webpack'], function() {
     .pipe(rename(function(path) {
       path.basename = 'all.min';
     }))
-    .pipe(uglify())
+    // .pipe(uglify())
     .pipe(gulp.dest('./dist/public/js'))
     .pipe(browserSync.stream());
 });
@@ -135,4 +135,3 @@ gulp.task('watch', function() {
   gulp.watch('./src/**/**/*.js*', ['js', 'eslint']);
   gulp.watch('./src/scss/**/*.scss', ['stylesheets']);
 });
-

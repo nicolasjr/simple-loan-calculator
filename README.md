@@ -1,8 +1,10 @@
-# React Boilerplate
+# Simple Loan Calculator
 
-## Getting started
+A Loan Calculator that allows users to know what will be the monthly installment and interest for a given amount and term.
 
-Configuring this repository to get going is extremely simple.
+## Setup
+
+Setting up this repository to get going is extremely simple.
 
 Assuming you already have installed Node and npm (if you don't, [check how to here](https://nodejs.org/en/)), all you'll need to do is:
 
@@ -18,5 +20,4 @@ npm install
 ./node_modules/.bin/gulp
 ```
 
-Now you're good to go!
-
+Now you should be seeing the app running in your browser. :)

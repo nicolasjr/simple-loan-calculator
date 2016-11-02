@@ -2,5 +2,8 @@
   "extends": "airbnb",
   "globals": {
     "document": false
+  },
+  "rules": {
+    "react/no-unused-prop-types": [2, { skipShapeProps: true }]
   }
 }
