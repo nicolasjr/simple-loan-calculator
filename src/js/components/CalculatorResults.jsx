@@ -41,7 +41,7 @@ function mapStateToProps(state) {
     totalCostOfCredit,
     totalRepayableAmount,
     monthlyPayment,
-  } = state.results;
+  } = state.results.toJS();
   return {
     totalPrincipal,
     term,
