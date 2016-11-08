@@ -7,16 +7,9 @@ export function setLimits(limits) {
   };
 }
 
-export function setAmountValue(value) {
+export function setCurrentValue(type, value) {
   return {
-    type: Actions.SET_CURRENT_AMOUNT,
-    value,
-  };
-}
-
-export function setTermValue(value) {
-  return {
-    type: Actions.SET_CURRENT_TERM,
+    type,
     value,
   };
 }

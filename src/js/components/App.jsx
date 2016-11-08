@@ -1,10 +1,10 @@
 import React from 'react';
 import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+import loanCalculatorApp from '../reducers/index';
 import Calculator from './Calculator';
-import configureStore from '../store/configureStore';
 
-
-const store = configureStore();
+const store = createStore(loanCalculatorApp);
 
 function App() {
   return (

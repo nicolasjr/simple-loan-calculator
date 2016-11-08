@@ -77,7 +77,7 @@ function setAmount(state, amount) {
   });
 }
 
-function limitsReducer(state = initialState, action) {
+function calculatorReducer(state = initialState, action) {
   switch (action.type) {
     case Actions.SET_LIMITS:
       return setLimits(state, action.limits);
@@ -90,4 +90,4 @@ function limitsReducer(state = initialState, action) {
   }
 }
 
-export default limitsReducer;
+export default calculatorReducer;

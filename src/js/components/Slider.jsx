@@ -1,14 +1,9 @@
 import React, { PropTypes } from 'react';
+import sliderProps from '../propTypes/index';
 
-const propTypes = {
-  limits: PropTypes.shape({
-    min: PropTypes.number,
-    max: PropTypes.number,
-    step: PropTypes.number,
-    value: PropTypes.number,
-  }).isRequired,
+const propTypes = Object.assign({}, sliderProps, {
   onChange: PropTypes.func.isRequired,
-};
+});
 
 class Slider extends React.Component {
   constructor(props) {
@@ -21,7 +16,7 @@ class Slider extends React.Component {
   }
 
   render() {
-    const { limits: { step, min, max, value } } = this.props;
+    const { step, min, max, value } = this.props;
     return (
       <input
         type="range"

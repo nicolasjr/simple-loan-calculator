@@ -1,25 +1,38 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
-import { setTermValue } from '../actions/index';
+import { setCurrentValue } from '../actions/index';
+import { createSliderProps } from '../mixins/index';
 import Slider from './Slider';
 import SliderInputLabel from './SliderInputLabel';
+import { sliderProps } from '../propTypes/index';
+import Actions from '../actions/Actions';
 
-const TermSlider = ({ limits, dispatch }) => {
-  const onChange = (value) => {
-    dispatch(setTermValue(value));
+const TermSlider = ({ min, max, step, value, dispatch }) => {
+  const onChange = (v) => {
+    dispatch(setCurrentValue(Actions.SET_CURRENT_TERM, v));
   };
 
   return (
     <div>
-      <Slider limits={limits} onChange={onChange} />
-      <SliderInputLabel currentValue={limits.value} onChange={onChange} />
+      <Slider
+        min={min}
+        max={max}
+        step={step}
+        value={value}
+        onChange={onChange}
+      />
+      <SliderInputLabel currentValue={value} onChange={onChange} />
     </div>
   );
 };
 
-TermSlider.propTypes = {
-  limits: PropTypes.shape().isRequired,
-  dispatch: PropTypes.func.isRequired,
-};
+TermSlider.propTypes = sliderProps;
 
-export default connect()(TermSlider);
+function mapStateToProps(state) {
+  return createSliderProps(
+    state.calculatorReducer.term,
+    state.calculatorReducer.currentTerm
+  );
+}
+
+export default connect(mapStateToProps)(TermSlider);

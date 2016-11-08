@@ -1,3 +1,5 @@
-export const constraints = 'https://js-developer-second-round.herokuapp.com/api/v1/application/constraints';
+const baseUrl = 'https://js-developer-second-round.herokuapp.com/api/v1';
 
-export const firstLoan = 'https://js-developer-second-round.herokuapp.com/api/v1/application/first-loan-offer';
+export const constraintsUrl = `${baseUrl}/application/constraints`;
+
+export const firstLoanUrl = `${baseUrl}/application/first-loan-offer`;

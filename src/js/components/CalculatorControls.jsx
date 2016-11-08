@@ -1,78 +1,60 @@
 import React, { PropTypes } from 'react';
-import $ from 'jquery';
-import { constraints } from '../apis/index';
+import 'whatwg-fetch';
+import { connect } from 'react-redux';
+import { constraintsUrl, firstLoanUrl } from '../apis/index';
 import TermSlider from './TermSlider';
 import AmountSlider from './AmountSlider';
+import { setLimits, setResults } from '../actions/index';
 
 const propTypes = {
-  amountLimits: PropTypes.shape({
-    min: PropTypes.number,
-    max: PropTypes.number,
-    step: PropTypes.number,
-    defaultValue: PropTypes.number,
-  }).isRequired,
-  termLimits: PropTypes.shape({
-    min: PropTypes.number,
-    max: PropTypes.number,
-    step: PropTypes.number,
-    defaultValue: PropTypes.number,
-  }).isRequired,
   onSetLimits: PropTypes.func.isRequired,
-  currentValues: PropTypes.shape({
-    amount: PropTypes.number,
-    term: PropTypes.number,
-  }),
+  onSetResults: PropTypes.func.isRequired,
+  currentAmount: PropTypes.number,
+  currentTerm: PropTypes.number,
 };
 
 class CalculatorControls extends React.Component {
-  static getLimits(limits, currentValue) {
-    return {
-      min: limits.min,
-      max: limits.max,
-      step: limits.step,
-      value: currentValue || limits.defaultValue,
-    };
-  }
-
   constructor(props) {
     super(props);
-    this.handleData = this.handleData.bind(this);
+    this.handleLimitsData = this.handleLimitsData.bind(this);
+    this.handleLoanData = this.handleLoanData.bind(this);
   }
 
   componentDidMount() {
-    $.ajax({
-      url: constraints,
-      success: this.handleData,
-      dataType: 'json',
-      cache: true,
-    });
+    fetch(constraintsUrl)
+      .then(s => s.json())
+      .then(this.handleLimitsData);
   }
 
-  handleData(limits) {
+  componentWillReceiveProps(nextProps) {
+    const amount = nextProps.currentAmount;
+    const term = nextProps.currentTerm;
+
+    if (!amount || !term) {
+      return;
+    }
+
+    if (term !== this.props.currentTerm || amount !== this.props.currentAmount) {
+      const url = `${firstLoanUrl}?amount=${amount}+&term=${term}`;
+      fetch(url)
+        .then(s => s.json())
+        .then(this.handleLoanData);
+    }
+  }
+
+  handleLimitsData(limits) {
     this.props.onSetLimits(limits);
   }
 
-  loadTermSlider() {
-    const limits = CalculatorControls.getLimits(
-      this.props.termLimits,
-      this.props.currentValues.term
-    );
-    return <TermSlider limits={limits} />;
-  }
-
-  loadAmountSlider() {
-    const limits = CalculatorControls.getLimits(
-      this.props.amountLimits,
-      this.props.currentValues.amount
-    );
-    return <AmountSlider limits={limits} />;
+  handleLoanData(results) {
+    this.props.onSetResults(results);
   }
 
   render() {
     return (
       <div>
-        {this.loadAmountSlider()}
-        {this.loadTermSlider()}
+        <AmountSlider />
+        <TermSlider />
       </div>
     );
   }
@@ -80,4 +62,22 @@ class CalculatorControls extends React.Component {
 
 CalculatorControls.propTypes = propTypes;
 
-export default CalculatorControls;
+function mapStateToProps(state) {
+  return {
+    currentAmount: state.calculatorReducer.currentAmount,
+    currentTerm: state.calculatorReducer.currentTerm,
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    onSetLimits: (limits) => {
+      dispatch(setLimits(limits));
+    },
+    onSetResults: (results) => {
+      dispatch(setResults(results));
+    },
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CalculatorControls);
