@@ -3,8 +3,8 @@ import calculatorReducer from './calculatorReducer';
 import resultReducer from './resultReducer';
 
 const loanCalculatorApp = combineReducers({
-  calculatorReducer,
-  resultReducer,
+  calculator: calculatorReducer,
+  results: resultReducer,
 });
 
 export default loanCalculatorApp;

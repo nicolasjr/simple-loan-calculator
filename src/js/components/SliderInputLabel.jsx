@@ -1,5 +1,10 @@
 import React, { PropTypes } from 'react';
 
+const propTypes = {
+  currentValue: PropTypes.number.isRequired,
+  onChange: PropTypes.func.isRequired,
+};
+
 class SliderInputLabel extends React.Component {
   constructor(props) {
     super(props);
@@ -35,9 +40,6 @@ class SliderInputLabel extends React.Component {
   }
 }
 
-SliderInputLabel.propTypes = {
-  currentValue: PropTypes.number.isRequired,
-  onChange: PropTypes.func.isRequired,
-};
+SliderInputLabel.propTypes = propTypes;
 
 export default SliderInputLabel;

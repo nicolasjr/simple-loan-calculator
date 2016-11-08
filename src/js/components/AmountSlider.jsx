@@ -30,8 +30,8 @@ AmountSlider.propTypes = sliderProps;
 
 function mapStateToProps(state) {
   return createSliderProps(
-    state.calculatorReducer.amount,
-    state.calculatorReducer.currentAmount
+    state.calculator.amount,
+    state.calculator.currentAmount
   );
 }
 

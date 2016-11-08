@@ -1,10 +1,11 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
 import loanCalculatorApp from '../reducers/index';
 import Calculator from './Calculator';
 
-const store = createStore(loanCalculatorApp);
+const store = applyMiddleware(thunk)(createStore)(loanCalculatorApp);
 
 function App() {
   return (

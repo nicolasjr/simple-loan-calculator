@@ -41,7 +41,7 @@ function mapStateToProps(state) {
     totalCostOfCredit,
     totalRepayableAmount,
     monthlyPayment,
-  } = state.resultReducer;
+  } = state.results;
   return {
     totalPrincipal,
     term,

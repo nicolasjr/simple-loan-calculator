@@ -1,7 +1,5 @@
 import React, { PropTypes } from 'react';
-import 'whatwg-fetch';
 import { connect } from 'react-redux';
-import { constraintsUrl, firstLoanUrl } from '../apis/index';
 import TermSlider from './TermSlider';
 import AmountSlider from './AmountSlider';
 import { setLimits, setResults } from '../actions/index';
@@ -14,16 +12,8 @@ const propTypes = {
 };
 
 class CalculatorControls extends React.Component {
-  constructor(props) {
-    super(props);
-    this.handleLimitsData = this.handleLimitsData.bind(this);
-    this.handleLoanData = this.handleLoanData.bind(this);
-  }
-
   componentDidMount() {
-    fetch(constraintsUrl)
-      .then(s => s.json())
-      .then(this.handleLimitsData);
+    this.props.onSetLimits();
   }
 
   componentWillReceiveProps(nextProps) {
@@ -35,19 +25,8 @@ class CalculatorControls extends React.Component {
     }
 
     if (term !== this.props.currentTerm || amount !== this.props.currentAmount) {
-      const url = `${firstLoanUrl}?amount=${amount}+&term=${term}`;
-      fetch(url)
-        .then(s => s.json())
-        .then(this.handleLoanData);
+      this.props.onSetResults(amount, term);
     }
-  }
-
-  handleLimitsData(limits) {
-    this.props.onSetLimits(limits);
-  }
-
-  handleLoanData(results) {
-    this.props.onSetResults(results);
   }
 
   render() {
@@ -64,18 +43,18 @@ CalculatorControls.propTypes = propTypes;
 
 function mapStateToProps(state) {
   return {
-    currentAmount: state.calculatorReducer.currentAmount,
-    currentTerm: state.calculatorReducer.currentTerm,
+    currentAmount: state.calculator.currentAmount,
+    currentTerm: state.calculator.currentTerm,
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    onSetLimits: (limits) => {
-      dispatch(setLimits(limits));
+    onSetLimits: () => {
+      dispatch(setLimits());
     },
-    onSetResults: (results) => {
-      dispatch(setResults(results));
+    onSetResults: (amount, term) => {
+      dispatch(setResults(amount, term));
     },
   };
 }
