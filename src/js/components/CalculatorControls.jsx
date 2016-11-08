@@ -43,8 +43,8 @@ CalculatorControls.propTypes = propTypes;
 
 function mapStateToProps(state) {
   return {
-    currentAmount: state.calculator.currentAmount,
-    currentTerm: state.calculator.currentTerm,
+    currentAmount: state.calculator.get('currentAmount'),
+    currentTerm: state.calculator.get('currentTerm'),
   };
 }
 

@@ -30,8 +30,8 @@ TermSlider.propTypes = sliderProps;
 
 function mapStateToProps(state) {
   return createSliderProps(
-    state.calculator.term,
-    state.calculator.currentTerm
+    state.calculator.get('term'),
+    state.calculator.get('currentTerm')
   );
 }
 

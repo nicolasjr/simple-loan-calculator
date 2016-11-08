@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
-import calculatorReducer from './calculatorReducer';
 import resultReducer from './resultReducer';
+import calculatorReducer from './calculatorReducer';
 
 const loanCalculatorApp = combineReducers({
   calculator: calculatorReducer,

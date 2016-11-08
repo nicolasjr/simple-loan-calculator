@@ -1,5 +1,5 @@
 export function createSliderProps(limits, value) {
-  const { min, max, step } = limits;
+  const { min, max, step } = limits.toJS();
   return {
     min,
     max,

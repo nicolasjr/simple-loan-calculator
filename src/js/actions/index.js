@@ -9,11 +9,25 @@ function applyLimits(limits) {
   };
 }
 
+function applyDefaultValues(defaultAmount, defaultTerm) {
+  return {
+    type: Actions.SET_INITIAL_VALUES,
+    defaultAmount,
+    defaultTerm,
+  };
+}
+
 export function setLimits() {
   return (dispatch) => {
     fetch(constraintsUrl)
       .then(r => r.json())
-      .then(limits => dispatch(applyLimits(limits)));
+      .then((limits) => {
+        dispatch(applyLimits(limits));
+        dispatch(applyDefaultValues(
+          limits.amountInterval.defaultValue,
+          limits.termInterval.defaultValue
+        ));
+      });
   };
 }
 
