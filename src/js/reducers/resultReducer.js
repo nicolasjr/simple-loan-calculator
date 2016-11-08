@@ -9,10 +9,28 @@ const defaultState = new Map({
   monthlyPayment: 0,
 });
 
+function setResults(state, results) {
+  const {
+    totalPrincipal,
+    term,
+    totalCostOfCredit,
+    totalRepayableAmount,
+    monthlyPayment,
+  } = results;
+
+  return state.merge({
+    totalPrincipal: parseInt(totalPrincipal, 10),
+    term: parseInt(term, 10),
+    totalCostOfCredit: parseInt(totalCostOfCredit, 10),
+    totalRepayableAmount: parseInt(totalRepayableAmount, 10),
+    monthlyPayment: parseInt(monthlyPayment, 10),
+  });
+}
+
 function resultReducer(state = defaultState, action) {
   switch (action.type) {
     case Actions.SET_RESULTS:
-      return state.merge(action.results);
+      return setResults(state, action.results);
     default:
       return state;
   }
