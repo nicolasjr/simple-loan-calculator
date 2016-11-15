@@ -2,7 +2,7 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
-import loanCalculatorApp from '../reducers/index';
+import loanCalculatorApp from '../reducers';
 import { Controls } from './calculator';
 import { Results } from './results';
 

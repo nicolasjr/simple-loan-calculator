@@ -1,6 +1,6 @@
 import 'whatwg-fetch';
 import types from './types';
-import { constraintsUrl, firstLoanUrl } from '../apis/index';
+import { constraintsUrl, firstLoanUrl } from '../apis';
 
 function applyLimits(limits) {
   return {

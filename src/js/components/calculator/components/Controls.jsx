@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import AmountSlider from './AmountSlider';
 import TermSlider from './TermSlider';
-import { setLimits, setResults } from '../../../actions/index';
+import { setLimits, setResults } from '../../../actions';
 
 const propTypes = {
   onSetLimits: PropTypes.func.isRequired,

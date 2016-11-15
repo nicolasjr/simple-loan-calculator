@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import sliderProps from '../propTypes/index';
+import sliderProps from '../propTypes';
 
 const propTypes = Object.assign({}, sliderProps, {
   onChange: PropTypes.func.isRequired,
