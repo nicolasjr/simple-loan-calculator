@@ -14,7 +14,6 @@ class SliderInputLabel extends React.Component {
     };
 
     this.handleBlur = this.handleBlur.bind(this);
-    this.handleFocus = this.handleFocus.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
 
@@ -30,16 +29,10 @@ class SliderInputLabel extends React.Component {
     });
   }
 
-  handleFocus() {
-    this.setState({
-      focus: true,
-    });
-  }
-
   handleBlur(e) {
     this.props.onChange(e.target.value);
     this.setState({
-      focus: false,
+      value: this.props.currentValue,
     });
   }
 
@@ -47,7 +40,6 @@ class SliderInputLabel extends React.Component {
     return (
       <input
         onChange={this.handleChange}
-        onFocus={this.handleFocus}
         onBlur={this.handleBlur}
         value={this.state.value}
       />

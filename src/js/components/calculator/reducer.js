@@ -45,7 +45,6 @@ function setAmount(state, amount) {
 }
 
 function reducer(state = initialState, action) {
-  console.log(action.type);
   switch (action.type) {
     case Actions.SET_LIMITS:
       return state.merge({
