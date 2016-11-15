@@ -1,4 +1,4 @@
-export function createSliderProps(limits, value) {
+function createSliderProps(limits, value) {
   const { min, max, step } = limits.toJS();
   return {
     min,
@@ -7,3 +7,5 @@ export function createSliderProps(limits, value) {
     value,
   };
 }
+
+export default createSliderProps;

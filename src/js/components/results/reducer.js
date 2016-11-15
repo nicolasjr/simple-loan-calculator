@@ -1,5 +1,5 @@
 import { Map } from 'immutable';
-import Actions from '../actions/Actions';
+import Actions from '../../actions';
 
 const defaultState = new Map({
   totalPrincipal: 0,
@@ -27,7 +27,7 @@ function setResults(state, results) {
   });
 }
 
-function resultReducer(state = defaultState, action) {
+function reducer(state = defaultState, action) {
   switch (action.type) {
     case Actions.SET_RESULTS:
       return setResults(state, action.results);
@@ -36,4 +36,4 @@ function resultReducer(state = defaultState, action) {
   }
 }
 
-export default resultReducer;
+export default reducer;

@@ -1,8 +1,8 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import TermSlider from './TermSlider';
 import AmountSlider from './AmountSlider';
-import { setLimits, setResults } from '../actions/index';
+import TermSlider from './TermSlider';
+import { setLimits, setResults } from '../../../actions/index';
 
 const propTypes = {
   onSetLimits: PropTypes.func.isRequired,
@@ -11,7 +11,7 @@ const propTypes = {
   currentTerm: PropTypes.number,
 };
 
-class CalculatorControls extends React.Component {
+class Controls extends React.Component {
   componentDidMount() {
     this.props.onSetLimits();
   }
@@ -39,7 +39,7 @@ class CalculatorControls extends React.Component {
   }
 }
 
-CalculatorControls.propTypes = propTypes;
+Controls.propTypes = propTypes;
 
 function mapStateToProps(state) {
   return {
@@ -59,4 +59,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(CalculatorControls);
+export default connect(mapStateToProps, mapDispatchToProps)(Controls);

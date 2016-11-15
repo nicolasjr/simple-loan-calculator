@@ -1,5 +1,5 @@
 import { Map } from 'immutable';
-import Actions from '../actions/Actions';
+import Actions from '../../actions';
 
 function createLimit(min, max, step, defaultValue) {
   return new Map({ min, max, step, defaultValue });
@@ -44,7 +44,8 @@ function setAmount(state, amount) {
   return currentAmount || state.currentAmount;
 }
 
-function calculatorReducer(state = initialState, action) {
+function reducer(state = initialState, action) {
+  console.log(action.type);
   switch (action.type) {
     case Actions.SET_LIMITS:
       return state.merge({
@@ -68,4 +69,4 @@ function calculatorReducer(state = initialState, action) {
   }
 }
 
-export default calculatorReducer;
+export default reducer;

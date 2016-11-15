@@ -1,17 +1,17 @@
 import 'whatwg-fetch';
-import Actions from './Actions';
+import types from './types';
 import { constraintsUrl, firstLoanUrl } from '../apis/index';
 
 function applyLimits(limits) {
   return {
-    type: Actions.SET_LIMITS,
+    type: types.SET_LIMITS,
     limits,
   };
 }
 
 function applyDefaultValues(defaultAmount, defaultTerm) {
   return {
-    type: Actions.SET_INITIAL_VALUES,
+    type: types.SET_INITIAL_VALUES,
     defaultAmount,
     defaultTerm,
   };
@@ -40,7 +40,7 @@ export function setCurrentValue(type, value) {
 
 function applyResults(results) {
   return {
-    type: Actions.SET_RESULTS,
+    type: types.SET_RESULTS,
     results,
   };
 }
@@ -62,3 +62,5 @@ export function setResults(amount, term) {
       });
   };
 }
+
+export default types;

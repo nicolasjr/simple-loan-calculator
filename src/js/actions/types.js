@@ -1,4 +1,4 @@
-const Actions = {
+const types = {
   SET_LIMITS: 'SET_LIMITS',
   SET_CURRENT_AMOUNT: 'SET_CURRENT_AMOUNT',
   SET_CURRENT_TERM: 'SET_CURRENT_TERM',
@@ -6,4 +6,4 @@ const Actions = {
   SET_INITIAL_VALUES: 'SET_INITIAL_VALUES',
 };
 
-export default Actions;
+export default types;

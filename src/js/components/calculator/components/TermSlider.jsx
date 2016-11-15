@@ -1,11 +1,10 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { setCurrentValue } from '../actions/index';
-import { createSliderProps } from '../mixins/index';
-import Slider from './Slider';
-import SliderInputLabel from './SliderInputLabel';
-import { sliderProps } from '../propTypes/index';
-import Actions from '../actions/Actions';
+import createSliderProps from '../../../mixins/index';
+import Slider from '../../Slider';
+import SliderInputLabel from '../../SliderInputLabel';
+import { sliderProps } from '../../../propTypes/index';
+import Actions, { setCurrentValue } from '../../../actions';
 
 const propTypes = Object.assign({}, sliderProps, {
   dispatch: PropTypes.func.isRequired,
