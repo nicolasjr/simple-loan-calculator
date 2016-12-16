@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
-import resultReducer from '../components/results/reducer';
-import calculatorReducer from '../components/calculator/reducer';
+import resultReducer from '../components/Results/reducer';
+import amount from '../components/Amount';
 
 const loanCalculatorApp = combineReducers({
-  calculator: calculatorReducer,
+  amount,
   results: resultReducer,
 });
 
