@@ -1,10 +1,6 @@
 function isWithinRange(min, max, step, value) {
   let v = value;
 
-  if (!v) {
-    return null;
-  }
-
   if (v < min) {
     v = min;
   } else if (v > max) {
