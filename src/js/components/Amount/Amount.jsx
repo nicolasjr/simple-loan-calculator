@@ -12,7 +12,8 @@ class Amount extends React.Component {
   }
 
   handleChange(value) {
-    this.props.dispatch(setCurrentAmount(value));
+    const { dispatch } = this.props;
+    dispatch(setCurrentAmount(value));
   }
 
   render() {
@@ -29,6 +30,10 @@ class Amount extends React.Component {
 
 Amount.propTypes = {
   dispatch: PropTypes.func,
+  min: PropTypes.number,
+  max: PropTypes.number,
+  step: PropTypes.number,
+  value: PropTypes.number,
 };
 
 function mapStateToProps(state) {

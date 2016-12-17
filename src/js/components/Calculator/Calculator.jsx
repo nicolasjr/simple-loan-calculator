@@ -1,10 +1,11 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import radium from 'radium';
-import { requestLimits } from './actions';
+import { requestLimits, requestResults } from './actions';
 // import { Term } from '../Term';
 import { Amount } from '../Amount';
 import { Results } from '../Results';
+import debounce from '../../common/debounce';
 
 const styles = {
   container: {
@@ -30,8 +31,25 @@ const styles = {
 };
 
 class Calculator extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.requestResults = debounce(this.requestResults.bind(this));
+  }
+
   componentDidMount() {
     this.props.dispatch(requestLimits());
+  }
+
+  componentDidUpdate(prevProps) {
+    const { amount, term } = this.props;
+    if (prevProps.amount !== amount || prevProps.term !== term) {
+      this.requestResults(amount, term);
+    }
+  }
+
+  requestResults(amount, term) {
+    this.props.dispatch(requestResults(amount, term));
   }
 
   render() {
@@ -48,6 +66,15 @@ class Calculator extends React.Component {
 
 Calculator.propTypes = {
   dispatch: PropTypes.func,
+  amount: PropTypes.number,
+  term: PropTypes.number,
 };
 
-export default connect()(radium(Calculator));
+function mapStateToProps(state) {
+  return {
+    amount: state.amount.get('currentValue'),
+    term: state.amount.get('currentValue'),
+  };
+}
+
+export default connect(mapStateToProps)(radium(Calculator));
