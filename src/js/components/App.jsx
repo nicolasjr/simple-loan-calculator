@@ -3,7 +3,7 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import loanCalculatorApp from '../reducers';
-import { Calculator } from './Calculator';
+import Calculator from './Calculator';
 
 const store = applyMiddleware(thunk)(createStore)(loanCalculatorApp);
 

@@ -5,7 +5,7 @@ import { requestLimits, requestResults } from './actions';
 import { Term } from '../Term';
 import { Amount } from '../Amount';
 import { Results } from '../Results';
-import debounce from '../../common/debounce';
+import { debounce } from '../../common';
 
 const styles = {
   container: {

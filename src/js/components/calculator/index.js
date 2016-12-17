@@ -1,6 +1,3 @@
-import reducer from './reducer';
+import Calculator from './Calculator';
 
-export { default as Calculator } from './Calculator';
-export * from './actions';
-
-export default reducer;
+export default Calculator;
