@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import radium from 'radium';
 import { requestLimits, requestResults } from './actions';
-// import { Term } from '../Term';
+import { Term } from '../Term';
 import { Amount } from '../Amount';
 import { Results } from '../Results';
 import debounce from '../../common/debounce';
@@ -56,7 +56,7 @@ class Calculator extends React.Component {
     return (
       <div style={styles.container}>
         <Amount />
-        <Amount />
+        <Term />
         <div style={styles.break} />
         <Results />
       </div>
@@ -73,7 +73,7 @@ Calculator.propTypes = {
 function mapStateToProps(state) {
   return {
     amount: state.amount.get('currentValue'),
-    term: state.amount.get('currentValue'),
+    term: state.term.get('currentValue'),
   };
 }
 
