@@ -1,8 +1,8 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import Slider from '../Slider';
-import SliderInputLabel from '../SliderInputLabel';
+import ValueController from '../ValueController';
 import { setCurrentTerm } from './actions';
+import { getConstraintsAndValue, valueProps } from '../../common';
 
 class Term extends React.Component {
   constructor(props) {
@@ -12,38 +12,30 @@ class Term extends React.Component {
   }
 
   handleChange(value) {
-    const { dispatch } = this.props;
-    dispatch(setCurrentTerm(value));
+    this.props.dispatch(setCurrentTerm(value));
   }
 
   render() {
     const { min, max, step, value } = this.props;
     return (
-      <div>
-        <h3>TERM</h3>
-        <Slider min={min} max={max} step={step} value={value} onChange={this.handleChange} />
-        <SliderInputLabel value={value} onChange={this.handleChange} />
-      </div>
+      <ValueController
+        min={min}
+        max={max}
+        step={step}
+        value={value}
+        onChange={this.handleChange}
+        title="TERM"
+      />
     );
   }
 }
 
-Term.propTypes = {
+Term.propTypes = Object.assign({}, valueProps, {
   dispatch: PropTypes.func,
-  min: PropTypes.number,
-  max: PropTypes.number,
-  step: PropTypes.number,
-  value: PropTypes.number,
-};
+});
 
 function mapStateToProps(state) {
-  const term = state.term;
-  return {
-    max: term.get('max'),
-    min: term.get('min'),
-    step: term.get('step'),
-    value: term.get('currentValue'),
-  };
+  return getConstraintsAndValue(state.term);
 }
 
 export default connect(mapStateToProps)(Term);

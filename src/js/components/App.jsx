@@ -10,9 +10,7 @@ const store = applyMiddleware(thunk)(createStore)(loanCalculatorApp);
 function App() {
   return (
     <Provider store={store}>
-      <div>
-        <Calculator />
-      </div>
+      <Calculator />
     </Provider>
   );
 }

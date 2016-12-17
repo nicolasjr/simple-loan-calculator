@@ -1,5 +1,5 @@
-import React, { PropTypes } from 'react';
-import sliderProps from '../common/propTypes';
+import React from 'react';
+import { valueControllerProps } from '../common';
 
 class Slider extends React.Component {
   constructor(props) {
@@ -19,8 +19,6 @@ class Slider extends React.Component {
   }
 }
 
-Slider.propTypes = Object.assign({}, sliderProps, {
-  onChange: PropTypes.func.isRequired,
-});
+Slider.propTypes = valueControllerProps;
 
 export default Slider;
