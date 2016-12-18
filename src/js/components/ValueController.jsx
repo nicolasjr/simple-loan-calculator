@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import Slider from './Slider';
 import SliderInputLabel from './SliderInputLabel';
+import { valueControllerProps } from '../common';
 
 class ValueController extends React.Component {
   constructor(props) {
@@ -25,9 +26,8 @@ class ValueController extends React.Component {
   }
 }
 
-ValueController.propTypes = {
-  onChange: PropTypes.func.isRequired,
+ValueController.propTypes = Object.assign({}, valueControllerProps, {
   title: PropTypes.string.isRequired,
-};
+});
 
 export default ValueController;

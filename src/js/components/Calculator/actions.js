@@ -3,7 +3,7 @@ import { constraintsUrl, firstLoanUrl } from '../../apis';
 import { setAmountConstraints } from '../Amount';
 import { setTermConstraints } from '../Term';
 import { setResults } from '../Results';
-import { formatString } from '../../common';
+import { formatString, makeCancelable } from '../../common';
 
 export function requestLimits() {
   return (dispatch) => {
@@ -16,10 +16,16 @@ export function requestLimits() {
   };
 }
 
+let requestResultsPromise;
 export function requestResults(amount, term) {
   const url = formatString(firstLoanUrl, amount, term);
   return (dispatch) => {
-    fetch(url)
+    if (requestResultsPromise) {
+      requestResultsPromise.cancel();
+    }
+
+    requestResultsPromise = makeCancelable(fetch(url));
+    requestResultsPromise.promise
       .then(r => r.json())
       .then((results) => {
         dispatch(setResults(results));
