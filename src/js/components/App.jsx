@@ -5,14 +5,15 @@ import thunk from 'redux-thunk';
 import loanCalculatorApp from '../reducers';
 import Calculator from './Calculator';
 
-const store = applyMiddleware(thunk)(createStore)(loanCalculatorApp);
+const store = createStore(
+  loanCalculatorApp,
+  applyMiddleware(thunk),
+);
 
-function App() {
-  return (
-    <Provider store={store}>
-      <Calculator />
-    </Provider>
-  );
-}
+const App = () => (
+  <Provider store={store}>
+    <Calculator />
+  </Provider>
+);
 
 export default App;
